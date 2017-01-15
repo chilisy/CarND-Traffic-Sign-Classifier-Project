@@ -45,7 +45,7 @@ def LeNet(x):
     mu = 0
     sigma = 0.1
 
-    # Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
+    # Layer 1: Convolutional. Input = 32x32x3. Output = 28x28x6.
     layer1_weights = tf.Variable(tf.truncated_normal(shape=(5, 5, 3, 6), mean=mu, stddev=sigma))
     layer1_bias = tf.Variable(tf.zeros(6))
     layer1 = conv2d(x, layer1_weights, layer1_bias, stride=1)
