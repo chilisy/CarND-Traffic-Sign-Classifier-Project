@@ -1,9 +1,8 @@
 import numpy as np
 import random
+import tensorflow as tf
 from tensorflow.contrib.layers import flatten
 import pandas
-
-import tensorflow as tf
 
 
 def get_signname_from_index(index):
@@ -59,7 +58,7 @@ def LeNet(x):
     # Layer 2: Convolutional. Output = 10x10x16.
     layer2_weights = tf.Variable(tf.truncated_normal(shape=(5, 5, 6, 16), mean=mu, stddev=sigma))
     layer2_bias = tf.Variable(tf.zeros(16))
-    layer2 = conv2d(pool1, layer2_weights, layer2_bias, strides=1)
+    layer2 = conv2d(pool1, layer2_weights, layer2_bias, stride=1)
 
     # Activation.
     layer2 = activation(layer2, opt='relu')
@@ -87,8 +86,8 @@ def LeNet(x):
     fc2 = activation(fc2, opt='relu')
 
     # Layer 5: Fully Connected. Input = 84. Output = 10.
-    fc3_weights = tf.Variable(tf.truncated_normal(shape=(84, 10), mean=mu, stddev=sigma))
-    fc3_bias = tf.Variable(tf.zeros(10))
+    fc3_weights = tf.Variable(tf.truncated_normal(shape=(84, 43), mean=mu, stddev=sigma))
+    fc3_bias = tf.Variable(tf.zeros(43))
     logits = tf.matmul(fc2, fc3_weights) + fc3_bias
 
     return logits
@@ -105,5 +104,4 @@ def optimize(eta = 0.001, opt='Adam'):
         return tf.train.AdagradDAOptimizer(learning_rate=eta)
     elif opt == 'AdadeltaOptimizer':
         return tf.train.AdadeltaOptimizer(learning_rate=eta)
-
 
