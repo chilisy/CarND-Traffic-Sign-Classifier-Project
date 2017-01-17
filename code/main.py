@@ -65,7 +65,7 @@ if showPlot:
     plt.show()
     print(get_signname_from_index(y_train[index]))
 
-EPOCHS = 10
+EPOCHS = 200
 BATCH_SIZE = 128
 
 x = tf.placeholder(tf.float32, (None,) + image_shape)
@@ -123,3 +123,4 @@ with tf.Session() as sess:
 
     test_accuracy = evaluate(X_test, y_test)
     print("Test Accuracy = {:.3f}".format(test_accuracy))
+
